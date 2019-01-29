@@ -23,7 +23,7 @@ submitButton.addEventListener('click' ,function(){
 function addList(items){
     list.innerHTML="";
     for(index=0;index<items.length;index++){
-    list.innerHTML+= "<li id="+index+">"+items[index]+"<button type='close'>Delete</button></li>";
+    list.innerHTML+= "<li id="+index+" type='litem'>"+items[index]+"<button type='close'>Delete</button></li>";
     }
     storeItems(items);
 }
@@ -35,6 +35,10 @@ list.addEventListener('click',function(event){
             var index= parent.getAttribute("id");
             list.removeChild(parent);
             deleteList(items,Number(index));
+        }
+        else if(event.target.getAttribute("type")=="litem"){
+            var id=event.target.getAttribute("id");
+            document.getElementById(id).classList.add("liner");
         }
 });
 function storeItems(items){
